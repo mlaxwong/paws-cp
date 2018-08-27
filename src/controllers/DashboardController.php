@@ -1,5 +1,5 @@
 <?php
-namespace pawscp\controllers;
+namespace paws\cp\controllers;
 
 use yii\web\Controller;
 use yii\web\ErrorAction;

@@ -1,6 +1,6 @@
 <?php
 return [
-    'controllerNamespace' => 'pawscp\\controllers',
+    'controllerNamespace' => 'paws\\cp\\controllers',
     'defaultRoute' => 'dashboard',
     'aliases' => [
         '@pawscp' => PATH_BASE . '/src',
