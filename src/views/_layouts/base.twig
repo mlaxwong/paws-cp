@@ -1,0 +1,19 @@
+{% if content is defined %}{{ content | raw }}{% else %}
+{{ void(this.beginPage()) }}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ app.language }}">
+<head>
+    <meta charset="{{ app.charset }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ html.encode(this.title) }}</title>
+    {{ this.head() }}
+    {{ html.csrfMetaTags() | raw }}
+</head>
+<body>
+    {{ this.beginBody() }}
+        {%- block body %}{% endblock %}
+    {{ this.endBody() }}
+</body>
+</html>
+{{ void(this.endPage()) }}
+{% endif %}
