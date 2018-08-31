@@ -3,6 +3,7 @@
 {% set fullPageForm = true %}
 
 {% import '@app/src/views/_includes/activeForms.twig' as forms %}
+{% import '@app/src/views/_includes/forms.twig' as zzforms %}
 
 {% block actionButton %}
     <button type="submit">{{ t('app', 'Save') }}</button>
@@ -10,6 +11,12 @@
 
 {% block content %}
     {{ forms.textField(model, 'name') }}
-    {{ forms.textField(model, 'handle') }}
-    {{ forms.textField(model, 'config') }}
+
+    {% if not model.isNewRecord %}
+    {{ forms.checkboxGroupField(model, 'field_ids', {
+        items: app.record.field().all(),
+        itemValueKey: 'id',
+        itemLabelKey: 'name',
+    }) }}
+    {% endif %}
 {% endblock %}

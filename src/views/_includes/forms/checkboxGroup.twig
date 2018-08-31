@@ -1,0 +1,21 @@
+{% if name is defined and name %}
+    <input type="hidden" name="{{ name }}" value="">
+{% endif -%}
+{% set name = (name is defined and name ? name~'[]' : null) %}
+{% set items = (items is defined ? items : []) %}
+{% set values = (values is defined ? values : []) %}
+{% set itemValueKey = (itemValueKey is defined ? itemValueKey : 'value') %}
+{% set itemLabelKey = (itemLabelKey is defined ? itemLabelKey : 'label') %}
+<div>
+    {% for key, item in items %}
+    <div>
+    {% include '@app/src/views/_includes/forms/checkbox.twig' with {
+        id: (id is defined ? id ~ '-' ~ key : null),
+        name: name,
+        value: attribute(item, itemValueKey),
+        label: attribute(item, itemLabelKey),
+        checked: (attribute(item, itemValueKey) is defined and attribute(item, itemValueKey) in values),
+    } only %}
+    </div>
+    {% endfor %}
+</div>

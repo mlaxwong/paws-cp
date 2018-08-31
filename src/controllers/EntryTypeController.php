@@ -2,10 +2,10 @@
 namespace paws\cp\controllers;
 
 use Paws;
-use paws\web\Controller;
-use paws\records\Field;
+use yii\web\Controller;
+use paws\records\EntryType;
 
-class FieldController extends Controller
+class EntryTypeController extends Controller
 {
     public function actionIndex()
     {
@@ -14,19 +14,19 @@ class FieldController extends Controller
 
     public function actionCreate()
     {
-        return $this->renderForm(new Field);
+        return $this->renderForm(new EntryType);
     }
 
     public function actionUpdate(int $id)
     {
-        return $this->renderForm(Field::findOne($id));    
+        return $this->renderForm(EntryType::findOne($id));
     }
 
     protected function renderForm($model)
     {
         if ($model->load(Paws::$app->request->post()) && $model->save())
         {
-            return $this->redirect(['index']);
+            return $this->redirect(['update', 'id' => $model->id]);
         }
         return $this->render('form', compact('model'));
     }

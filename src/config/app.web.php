@@ -1,6 +1,7 @@
 <?php
 return [
     'controllerNamespace' => 'paws\\cp\\controllers',
+    'layout' => 'cp',
     'defaultRoute' => 'dashboard',
     'aliases' => [
         '@pawscp' => PATH_BASE . '/src',
@@ -19,6 +20,11 @@ return [
             'showScriptName' => false,
             // 'enableStrictParsing' => false,
             // 'ruleConfig' => ['class' => paws\web\UrlRule::class],
+            'rules' => [  
+                '<controller:[\w\-]+>/<id:\d+>' => '<controller>/view',
+                '<controller:[\w\-]+>/<action:[\w\-]+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:[\w\-]+>/<action:[\w\-]+>' => '<controller>/<action>',               
+            ],
         ],
         'view' => [
             'class' => yii\web\View::class,
@@ -36,6 +42,7 @@ return [
                     'extensions' => YII_DEBUG ? ['\Twig_Extension_Debug'] : [],
                     'globals' => [
                         'html' => ['class' => yii\helpers\Html::class],
+                        'arrayhelper' => ['class' => yii\helpers\ArrayHelper::class],
                     ],
                     'functions' => [
                         't' => 'Paws::t',

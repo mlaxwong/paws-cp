@@ -1,0 +1,17 @@
+{% extends '@app/src/views/_layouts/cp.twig' %}
+
+{% block actionButton %}
+    <a href="{{ url(['field/create']) }}">{{ t('app', 'Create') }}</a>
+{% endblock %}
+
+{% block content %}
+    <div>
+        {% for model in app.record.field().all() %}
+            <div>
+                <a href="{{ url(['field/update']|merge({id: model.id})) }}">
+                {{ model.id }} - {{ model.handle }}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

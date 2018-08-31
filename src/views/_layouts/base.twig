@@ -1,5 +1,5 @@
 {% if content is defined %}{{ content | raw }}{% else %}
-{{ void(this.beginPage()) }}
+{{- void(this.beginPage()) -}}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ app.language }}">
 <head>
@@ -15,5 +15,5 @@
     {{ this.endBody() }}
 </body>
 </html>
-{{ void(this.endPage()) }}
+{{- void(this.endPage()) -}}
 {% endif %}

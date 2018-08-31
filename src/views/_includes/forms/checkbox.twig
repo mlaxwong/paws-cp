@@ -1,0 +1,9 @@
+<label>
+    <input type="checkbox" 
+    {% if id is defined %} id="{{ id }}" {% endif %}
+    {% if name is defined %} name="{{ name }}" {% endif %}
+    {% if value is defined %} value="{{ value }}" {% endif %}
+    {% if checked is defined and checked %} checked{% endif %}
+    />
+    {% if label is defined %}{{ label }}{% endif %}
+</label>

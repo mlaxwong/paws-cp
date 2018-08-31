@@ -1,0 +1,52 @@
+{% extends '@app/src/views/_layouts/base.twig' %}
+
+{% set crumbs = crumbs ?? null %}
+
+{% set fullPageForm = (fullPageForm is defined and fullPageForm) %}
+
+{% block body %}
+<div class="global-container">
+    <div class="global-sidebar">
+        <nav>
+            <ul>
+                <li><a href="{{ app.homeUrl }}">{{ t('app', 'Home') }}</a></li>
+                <li><a href="{{ url(['field/index']) }}">{{ t('app', 'Field') }}</a></li>
+                <li><a href="{{ url(['entry-type/index']) }}">{{ t('app', 'Entry Type') }}</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-container">
+        <div class="alerts"></div>
+        <div class="crumbs"></div>
+        <main>
+            {% if fullPageForm -%}
+            <form id="main-form" method="post" accept-charset="UTF-8">
+            <input type="hidden" name="_csrf" value="{{ app.request.getCsrfToken() }}" />
+            {% endif -%}
+            <header>
+                {% block header %}
+                    {% block pageTitle %}
+                        <h1>{{ this.title }}</h1>
+                    {% endblock %}
+                    {% block actionButton %}{% endblock %}
+                {% endblock %}
+            </header>
+            <div class="main-content">
+                {% if block('sidebar') is defined -%}
+                <div class="sidebar">
+                    {% block sidebar %}{% endblock %}
+                </div>
+                {% endif -%}
+                <div class="content">
+                    {%- block content %}
+                        {{  content is defined ? content|raw }}
+                    {% endblock -%}
+                </div>
+            </div>
+            {% if fullPageForm -%}
+            </form>
+            {% endif -%}
+        </main>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% macro textField(model, attribute, config = []) %}
+    {% import '@app/src/views/_includes/forms.twig' as forms %}
+    {{
+        forms.textField({
+            id: 'input-' ~ attribute,
+            label: model.getAttributeLabel(attribute),
+            placeholder: model.getAttributeLabel(attribute),
+            name: html.getInputName(model, attribute),
+            value: attribute(model, attribute),
+            errors: model.getErrors(attribute)
+        }|merge(config))
+    }}
+{% endmacro %}
+
+{% macro checkboxField(model, attribute, config = []) %}
+    {% import '@app/src/views/_includes/forms.twig' as forms %}
+    {{
+        forms.checkboxField({
+            id: 'input-' ~ attribute,
+            label: model.getAttributeLabel(attribute),
+            name: html.getInputName(model, attribute),
+            value: attribute(model, attribute),
+            errors: model.getErrors(attribute)
+        }|merge(config))
+    }}
+{% endmacro %}
+
+{% macro checkboxGroupField(model, attribute, config = []) %}
+    {% import '@app/src/views/_includes/forms.twig' as forms %}
+    {{
+        forms.checkboxGroupField({
+            id: 'input-' ~ attribute,
+            label: model.getAttributeLabel(attribute),
+            name: html.getInputName(model, attribute),
+            items: config.items,
+            values: attribute(model, attribute),
+            errors: model.getErrors(attribute)
+        }|merge(config))
+    }}
+{% endmacro %}

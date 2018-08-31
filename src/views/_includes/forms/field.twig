@@ -1,0 +1,13 @@
+{% set label = label is defined ? label : null %}
+{% set errors = errors is defined ? errors : null %}
+<div>
+    {% if label %}
+        <label
+        {% if id is defined %}for = "{{ id }}"{% endif %}
+        >{{ label }}</label>
+    {% endif %}
+    <div>
+        {{ input|raw }}
+    </div>
+    {% if errors %}{{ errors|first }}{% endif %}
+</div>

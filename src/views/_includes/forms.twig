@@ -1,0 +1,34 @@
+{% macro text(config) %}
+    {% include '@app/src/views/_includes/forms/text.twig' with config only %}
+{% endmacro %}
+
+{% macro checkbox(config) %}
+    {% include '@app/src/views/_includes/forms/checkbox.twig' with config only %}
+{% endmacro %}
+
+{% macro checkboxGroup(config) %}
+    {% include '@app/src/views/_includes/forms/checkboxGroup.twig' with config only %}
+{% endmacro %}
+
+{% macro field(config, input) %}
+    {% include '@app/src/views/_includes/forms/field.twig' with config|merge({input: input}) only %}
+{% endmacro %}
+
+{% macro textField(config) %}
+    {% import _self as forms %}
+    {% set input = forms.text(config) %}
+    {{ forms.field(config, input) }}
+{% endmacro %}
+
+{% macro checkboxField(config) %}
+    {% import _self as forms %}
+    {% set input = forms.checkbox(config) %}
+    {% set config = config|merge({label:null}) %}
+    {{ forms.field(config, input) }}
+{% endmacro %}
+
+{% macro checkboxGroupField(config) %}
+    {% import _self as forms %}
+    {% set input = forms.checkboxGroup(config) %}
+    {{ forms.field(config, input) }}
+{% endmacro %}

@@ -1,0 +1,7 @@
+{% set type = type is defined ? type : 'text' %}
+<input type="{{ type }}"
+{% if id is defined %} id="{{ id }}" {% endif %}
+{% if name is defined %} name="{{ name }}" {% endif %}
+{% if value is defined %} value="{{ value }}" {% endif %}
+{% if placeholder is defined %} placeholder="{{ placeholder }}" {% endif %}
+/>
