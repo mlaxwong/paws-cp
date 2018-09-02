@@ -9,11 +9,25 @@ class EntryController extends Controller
 {
     public function actionIndex()
     {
-        $testing = new Entry(['entry_type_id' => 1]);
-        $testing->title = 'new one';
-        echo $testing->save() ? 'yes' : 'no';
+        $model = Entry::find()
+            ->type(1)
+            ->andWhere(['id' => 27])
+            ->one();
+        
+        echo $model->title;
 
-        echo $testing->id;
+        $model->title = 'wow';
+
+        
+        if(!$model->save()) print_r($model->errors);
+        
+        echo $model->title;
+        
+        // $testing = new Entry(['entry_type_id' => 1]);
+        // $testing->title = 'new one';
+        // echo $testing->save() ? 'yes' : 'no';
+
+        // echo $testing->id;
 
         // $test = Entry::find()->type(1)->one();
         // echo $test->title;
