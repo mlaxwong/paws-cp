@@ -3,9 +3,9 @@ namespace paws\cp\controllers;
 
 use Paws;
 use paws\web\Controller;
-use paws\records\Field;
+use paws\records\CollectionField;
 
-class FieldController extends Controller
+class CollectionFieldController extends Controller
 {
     public function actionIndex()
     {
@@ -14,12 +14,12 @@ class FieldController extends Controller
 
     public function actionCreate()
     {
-        return $this->renderForm(new Field);
+        return $this->renderForm(new CollectionField);
     }
 
     public function actionUpdate(int $id)
     {
-        return $this->renderForm(Field::findOne($id));    
+        return $this->renderForm(CollectionField::findOne($id));    
     }
 
     protected function renderForm($model)

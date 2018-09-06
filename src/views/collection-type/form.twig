@@ -13,8 +13,8 @@
     {{ forms.textField(model, 'name') }}
 
     {% if not model.isNewRecord %}
-    {{ forms.checkboxGroupField(model, 'field_ids', {
-        items: app.record.field().all(),
+    {{ forms.checkboxGroupField(model, 'collection_field_ids', {
+        items: app.record.collectionField().all(),
         itemValueKey: 'id',
         itemLabelKey: 'name',
     }) }}

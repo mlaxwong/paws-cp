@@ -3,9 +3,9 @@ namespace paws\cp\controllers;
 
 use Paws;
 use yii\web\Controller;
-use paws\records\EntryType;
+use paws\records\CollectionType;
 
-class EntryTypeController extends Controller
+class CollectionTypeController extends Controller
 {
     public function actionIndex()
     {
@@ -14,12 +14,12 @@ class EntryTypeController extends Controller
 
     public function actionCreate()
     {
-        return $this->renderForm(new EntryType);
+        return $this->renderForm(new CollectionType);
     }
 
     public function actionUpdate(int $id)
     {
-        return $this->renderForm(EntryType::findOne($id));
+        return $this->renderForm(CollectionType::findOne($id));
     }
 
     protected function renderForm($model)

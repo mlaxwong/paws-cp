@@ -275,7 +275,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../../packages/mlaxwong/paws",
-                "reference": "67cf9992ef941d01a8fea7724815fdff83868a90",
+                "reference": "42657e7d411fc4e7e21419f2c9ab4a74e2fc922c",
                 "shasum": null
             },
             "require": {

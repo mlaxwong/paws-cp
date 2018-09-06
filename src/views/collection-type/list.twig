@@ -1,0 +1,11 @@
+{% extends '@app/src/views/_layouts/cp.twig' %}
+
+{% block actionButton %}
+    <a href="{{ url(['collection-type/create']) }}">{{ t('app', 'Create') }}</a>
+{% endblock %}
+
+{% block content %}
+    {% for model in app.record.collectionType().all() %}
+        <a href="{{ url(['collection-type/update']|merge({id: model.id})) }}">{{ model.id }} - {{ model.name }}</a>
+    {% endfor %}
+{% endblock %}

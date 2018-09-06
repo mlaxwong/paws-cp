@@ -2,14 +2,14 @@
 namespace paws\cp\controllers;
 
 use yii\web\Controller;
-use paws\models\Entry;
-use paws\records\EntryType;
+use paws\models\Collection;
+use paws\records\CollectionType;
 
-class EntryController extends Controller
+class CollectionController extends Controller
 {
     public function actionIndex()
     {
-        $model = Entry::find()
+        $model = Collection::find()
             ->type(1)
             ->andWhere(['id' => 27])
             ->one();
@@ -23,15 +23,15 @@ class EntryController extends Controller
         
         echo $model->title;
         
-        // $testing = new Entry(['entry_type_id' => 1]);
+        // $testing = new Collection(['collection_type_id' => 1]);
         // $testing->title = 'new one';
         // echo $testing->save() ? 'yes' : 'no';
 
         // echo $testing->id;
 
-        // $test = Entry::find()->type(1)->one();
+        // $test = Collection::find()->type(1)->one();
         // echo $test->title;
-        // $new = new Entry(['entry_type_id' => 1]);
+        // $new = new Collection(['collection_type_id' => 1]);
         // $new->refresh();
 
         // $reflection = new \ReflectionClass($new);
@@ -42,7 +42,7 @@ class EntryController extends Controller
         // $property->setAccessible(true);
         // echo '<pre>';print_r($property->getValue($new));
         // echo '<pre>';print_r($new->attributes());
-        // $new->entry_type_id = 1;
+        // $new->collection_type_id = 1;
         // $new->title = 'haha';
         // echo $new->title;
         // echo $new->save() ? 'yes' : 'no';
