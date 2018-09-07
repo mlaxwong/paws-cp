@@ -1,0 +1,17 @@
+{% extends '@app/src/views/_layouts/cp.twig' %}
+
+{% set fullPageForm = true %}
+
+{% import '@app/src/views/_includes/activeForms.twig' as forms %}
+
+{% block actionButton %}
+    <button type="submit">{{ t('app', 'Save') }}</button>
+{% endblock %}
+
+{% block content %}
+    {% for attribute in model.attributes() %}
+        {% if attribute not in ['id', 'collection_type_id', 'created_at', 'updated_at'] %} 
+        {{ forms.textField(model, attribute) }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

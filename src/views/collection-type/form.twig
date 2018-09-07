@@ -12,9 +12,11 @@
 {% block content %}
     {{ forms.textField(model, 'name') }}
 
+    {{ forms.textField(model, 'handle') }}
+
     {% if not model.isNewRecord %}
     {{ forms.checkboxGroupField(model, 'collection_field_ids', {
-        items: app.record.collectionField().all(),
+        items: app.models.collectionField().all(),
         itemValueKey: 'id',
         itemLabelKey: 'name',
     }) }}

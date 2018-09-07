@@ -1,6 +1,7 @@
 <?php
 namespace paws\cp\controllers;
 
+use Paws;
 use yii\web\Controller;
 use paws\models\Collection;
 use paws\records\CollectionType;
@@ -9,63 +10,26 @@ class CollectionController extends Controller
 {
     public function actionIndex()
     {
-        $model = Collection::find()
-            ->type(1)
-            ->andWhere(['id' => 27])
-            ->one();
-        
-        echo $model->title;
-
-        $model->title = 'wow';
-
-        
-        if(!$model->save()) print_r($model->errors);
-        
-        echo $model->title;
-        
-        // $testing = new Collection(['collection_type_id' => 1]);
-        // $testing->title = 'new one';
-        // echo $testing->save() ? 'yes' : 'no';
-
-        // echo $testing->id;
-
-        // $test = Collection::find()->type(1)->one();
-        // echo $test->title;
-        // $new = new Collection(['collection_type_id' => 1]);
-        // $new->refresh();
-
-        // $reflection = new \ReflectionClass($new);
-        // $method = $reflection->getMethod($methodName);
-        // $method->setAccessible(true);
-        // return $method->invokeArgs($object, $parameters);
-        // $property = $reflection->getProperty('_attributes');
-        // $property->setAccessible(true);
-        // echo '<pre>';print_r($property->getValue($new));
-        // echo '<pre>';print_r($new->attributes());
-        // $new->collection_type_id = 1;
-        // $new->title = 'haha';
-        // echo $new->title;
-        // echo $new->save() ? 'yes' : 'no';
-        // echo '<br />';
-        // print_r($new->errors);
-        die;
-
         return $this->render('list');
     }
 
-    public function actoinCreate()
+    public function actionCreate($typeId = null)
     {
-        return $this->renderForm();
+        $model = new Collection(compact('typeId'));
+        return $this->renderForm($model);
     }
 
-    public function actionUpdate()
+    public function actionUpdate(int $id)
     {
-        return $this->renderForm();
+        return $this->renderForm(Collection::findOne($id));
     }
 
     protected function renderForm($model = null)
     {
-
+        if ($model->load(Paws::$app->request->post()) && $model->save())
+        {
+            return $this->redirect(['update', 'id' => $model->id]);
+        }
         return $this->render('form', compact('model'));
     }
 }

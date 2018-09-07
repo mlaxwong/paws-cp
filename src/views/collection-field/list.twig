@@ -6,7 +6,7 @@
 
 {% block content %}
     <div>
-        {% for model in app.record.collectionField().all() %}
+        {% for model in app.models.collectionField().all() %}
             <div>
                 <a href="{{ url(['collection-field/update']|merge({id: model.id})) }}">
                 {{ model.id }} - {{ model.handle }}

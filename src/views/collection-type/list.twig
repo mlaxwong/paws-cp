@@ -5,7 +5,9 @@
 {% endblock %}
 
 {% block content %}
-    {% for model in app.record.collectionType().all() %}
+    {% for model in app.models.collectionType().all() %}
+    <div>
         <a href="{{ url(['collection-type/update']|merge({id: model.id})) }}">{{ model.id }} - {{ model.name }}</a>
+    </div>
     {% endfor %}
 {% endblock %}
