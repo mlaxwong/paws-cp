@@ -38,3 +38,17 @@
         }|merge(config))
     }}
 {% endmacro %}
+
+{% macro selectField(model, attribute, config = []) %}
+    {% import '@app/src/views/_includes/forms.twig' as forms %}
+    {{
+        forms.selectField({
+            id: 'input-' ~ attribute,
+            label: model.getAttributeLabel(attribute),
+            name: html.getInputName(model, attribute),
+            items: config.items,
+            value: attribute(model, attribute),
+            errors: model.getErrors(attribute)
+        }|merge(config))
+    }}
+{% endmacro %}

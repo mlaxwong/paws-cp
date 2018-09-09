@@ -14,6 +14,8 @@
 
     {{ forms.textField(model, 'handle') }}
 
+    {{ forms.selectField(model, 'mode', {items: model.modes()})}}
+
     {% if not model.isNewRecord %}
     {{ forms.checkboxGroupField(model, 'collection_field_ids', {
         items: app.models.collectionField().all(),

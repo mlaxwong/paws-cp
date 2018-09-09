@@ -1,0 +1,16 @@
+{% set items = (items is defined ? items : []) %}
+{% set value = (value is defined ? value : null) %}
+{% set itemValueKey = (itemValueKey is defined ? itemValueKey : 'value') %}
+{% set itemLabelKey = (itemLabelKey is defined ? itemLabelKey : 'label') %}
+<select
+{% if id is defined %} id="{{ id }}" {% endif %}
+{% if name is defined %} name="{{ name }}" {% endif %}
+>
+    {% for key, item in items %}
+    {% set itemValue = item is iterable ? attribute(item, itemValueKey) : key %}
+    {% set itemLabel = item is iterable ? attribute(item, itemLabelKey) : item %}
+    <option value="{{ itemValue }}"
+    {% if (itemValue == value) %} selected{% endif %}
+    >{{ itemLabel }}</option>
+    {% endfor %}
+</select>

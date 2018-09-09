@@ -10,6 +10,10 @@
     {% include '@app/src/views/_includes/forms/checkboxGroup.twig' with config only %}
 {% endmacro %}
 
+{% macro select(config) %}
+    {% include '@app/src/views/_includes/forms/select.twig' with config only %}
+{% endmacro %}
+
 {% macro field(config, input) %}
     {% include '@app/src/views/_includes/forms/field.twig' with config|merge({input: input}) only %}
 {% endmacro %}
@@ -30,5 +34,11 @@
 {% macro checkboxGroupField(config) %}
     {% import _self as forms %}
     {% set input = forms.checkboxGroup(config) %}
+    {{ forms.field(config, input) }}
+{% endmacro %}
+
+{% macro selectField(config) %}
+    {% import _self as forms %}
+    {% set input = forms.select(config) %}
     {{ forms.field(config, input) }}
 {% endmacro %}
