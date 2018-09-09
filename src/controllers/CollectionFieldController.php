@@ -3,6 +3,7 @@ namespace paws\cp\controllers;
 
 use Paws;
 use paws\web\Controller;
+use paws\base\Field;
 use paws\records\CollectionField;
 
 class CollectionFieldController extends Controller
@@ -20,6 +21,11 @@ class CollectionFieldController extends Controller
     public function actionUpdate(int $id)
     {
         return $this->renderForm(CollectionField::findOne($id));    
+    }
+
+    public function actionFieldSetting()
+    {
+        return $this->render('fieldSetting');
     }
 
     protected function renderForm($model)

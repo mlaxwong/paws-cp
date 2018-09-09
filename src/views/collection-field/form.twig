@@ -11,5 +11,5 @@
 {% block content %}
     {{ forms.textField(model, 'name') }}
     {{ forms.textField(model, 'handle') }}
-    {{ forms.textField(model, 'config') }}
+    {{ forms.selectField(model, 'config_class', {items: model.getFieldTypes()}) }}
 {% endblock %}
